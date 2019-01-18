@@ -7,6 +7,47 @@ endif
 
 let g:loaded_plugin_php_psr2 = 1
 
-augroup plugin_php_psr2
-	au FileType php setlocal ai si et sts=4 sw=4 ts=8 cc+=120
-augroup END
+if ! exists("g:php_psr2_soft_margin")
+	let g:php_psr2_soft_margin = 1
+endif
+
+if ! exists("g:php_psr2_hard_margin")
+	let g:php_psr2_hard_margin = 1
+endif
+
+if ! exists("g:php_psr2_textwidth")
+	let g:php_psr2_textwidth = 80
+endif
+
+function s:SetPSR2Mode()
+	setlocal autoindent smartindent
+	setlocal expandtab softtabstop=4 shiftwidth=4 tabstop=8
+	execute "setlocal textwidth=".g:php_psr2_textwidth
+
+	if v:version < 700
+		return
+	endif
+
+	if g:php_psr2_hard_margin
+		setlocal cc+=120
+	endif
+	if g:php_psr2_soft_margin
+		setlocal cc+=80
+	endif
+endfunction
+
+function s:Deactivate()
+	augroup plugin_php_psr2
+		au!
+	augroup END
+endfunction
+
+function s:Activate()
+	augroup plugin_php_psr2
+		au FileType php call s:SetPSR2Mode()
+	augroup END
+endfunction
+
+command PhpPsr2On call s:Activate()
+command PhpPsr2Off call s:Deactivate()
+call s:Activate()
