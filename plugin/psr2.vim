@@ -20,7 +20,7 @@ if ! exists("g:php_psr2_textwidth")
 endif
 
 function s:SetPSR2Mode()
-	setlocal autoindent setlocal expandtab softtabstop=4 shiftwidth=4 tabstop=8
+	setlocal autoindent expandtab softtabstop=4 shiftwidth=4 tabstop=8
 	execute "setlocal textwidth=".g:php_psr2_textwidth
 
 	if has("smartindent")
@@ -43,7 +43,7 @@ function s:SetPSR2Mode()
 endfunction
 
 function s:Revert()
-	set autoindent< set expandtab< softtabstop< shiftwidth< tabstop<
+	set autoindent< expandtab< softtabstop< shiftwidth< tabstop<
 	set textwidth<
 
 	if has("smartindent")
