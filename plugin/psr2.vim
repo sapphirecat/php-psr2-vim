@@ -36,6 +36,16 @@ function s:SetPSR2Mode()
 	endif
 endfunction
 
+function s:Revert()
+	set autoindent< smartindent<
+	set expandtab< softtabstop< shiftwidth< tabstop<
+	set textwidth<
+
+	if v:version >= 700
+		set colorcolumn<
+	endif
+endfunction
+
 function s:Deactivate()
 	augroup plugin_php_psr2
 		au!
@@ -50,4 +60,5 @@ endfunction
 
 command PhpPsr2On call s:Activate()
 command PhpPsr2Off call s:Deactivate()
+command PhpPsr2Revert call s:Revert()
 call s:Activate()

@@ -19,6 +19,20 @@ There are three configuration options:
 The auto-activation can be disabled with `:PhpPsr2Off` and re-enabled with
 `:PhpPsr2On`.  Because I'm like that.
 
+If the plugin has auto-activated in a buffer, its buffer-local settings can be
+reset to the global value using `:PhpPsr2Revert`.
+
+# Settings Affected
+
+    autoindent
+    smartindent
+    expandtab
+    shiftwidth
+    softtabstop
+    tabstop
+    textwidth
+    colorcolumn [optional]
+
 # Requirements
 
 Minimum vim 6.0 with `+autocmd` feature.  Vim 7.0 is required for the margin
