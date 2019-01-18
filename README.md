@@ -26,12 +26,13 @@ reset to the global value using `:PhpPsr2Revert`.
 
     autoindent
     smartindent
+    nocindent
     expandtab
     shiftwidth
     softtabstop
     tabstop
-    textwidth
-    colorcolumn [optional]
+    textwidth [configurable value]
+    colorcolumn [configurable]
 
 # Requirements
 
