@@ -19,8 +19,18 @@ if ! exists("g:php_psr2_textwidth")
 	let g:php_psr2_textwidth = 80
 endif
 
+if ! exists("g:php_psr2_use_tabs")
+	let g:php_psr2_use_tabs = 0
+endif
+
 function s:SetPSR2Mode()
-	setlocal autoindent expandtab softtabstop=4 shiftwidth=4 tabstop=8
+	if g:php_psr2_use_tabs
+		execute "setlocal noexpandtab softtabstop=0 shiftwidth=".&tabstop
+	else
+		setlocal expandtab tabstop=8 softtabstop=4 shiftwidth=4
+	endif
+
+	setlocal autoindent
 	execute "setlocal textwidth=".g:php_psr2_textwidth
 
 	if has("smartindent")

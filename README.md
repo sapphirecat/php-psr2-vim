@@ -10,11 +10,17 @@ Your favorite plugin manager.
 
 It just does its thing, calling `setlocal` when PHP filetype is set.
 
-There are three configuration options:
+There are four configuration options:
 
-- `g:php_psr2_soft_margin`: if set to 0, suppresses `colorcolumn+=80`
-- `g:php_psr2_hard_margin`: if set to 0, suppresses `colorcolumn+=120`
-- `g:php_psr2_textwidth`: Default 80.  Value to set the local `textwidth` to.
+- `g:php_psr2_textwidth`: Integer, default 80.  Value to set the local
+  `textwidth` to.
+- `g:php_psr2_soft_margin`: Boolean. If set to 0, suppresses `colorcolumn+=80`
+- `g:php_psr2_hard_margin`: Boolean. If set to 0, suppresses
+  `colorcolumn+=120`
+- `g:php_psr2_use_tabs`: Boolean. If set to 1, uses tabs instead of spaces for
+  indentation, setting `shiftwidth` to `tabstop` (which is left unchanged.)
+  This is technically a violation of PSR-2, but tabs are the one true way to
+  indent.
 
 The auto-activation can be disabled with `:PhpPsr2Off` and re-enabled with
 `:PhpPsr2On`.  Because I'm like that.
@@ -27,12 +33,15 @@ reset to the global value using `:PhpPsr2Revert`.
     autoindent
     smartindent
     nocindent
-    expandtab
+    [no]expandtab
     shiftwidth
     softtabstop
     tabstop
     textwidth [configurable value]
     colorcolumn [configurable]
+
+Notably, `formatoptions` is **not** affected.  Code will continue to wrap, or
+not, according to your preference.
 
 # Requirements
 
